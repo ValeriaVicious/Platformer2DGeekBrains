@@ -9,8 +9,13 @@ namespace PlatformerGeekBrains
 
         [SerializeField] private SpriteCharacterAnimationConfig _playerAnimationsConfig;
         [SerializeField] private CharacterView _playerView;
+        [SerializeField] private PlayerConfig _playerConfig;
+        [SerializeField] private CannonView _cannonView;
 
-        private SpriteAnimatorController _spriteAnimator;
+        private CameraController _cameraController;
+        private PlayerController _playerController;
+        private CannonController _cannonController;
+        private BulletEmitterController _bulletEmitterController;
 
         #endregion
 
@@ -19,32 +24,27 @@ namespace PlatformerGeekBrains
 
         private void Awake()
         {
+            Camera camera = Camera.main;
             _playerAnimationsConfig = Resources.Load<SpriteCharacterAnimationConfig>(Constants.SpriteAnimationsConfig);
-
-            if (_playerAnimationsConfig)
-            {
-                _spriteAnimator = new SpriteAnimatorController(_playerAnimationsConfig);
-            }
-
-            if (_playerView)
-            {
-                _spriteAnimator.StartAnimation(_playerView.CharacterSprite, Track.Idle, true, 10.0f);
-            }
+            _playerController = new PlayerController(_playerConfig, _playerView);
+            _cameraController = new CameraController(_playerView.CharacterTransform, camera.transform);
+            _cannonController = new CannonController(_cannonView.MuzzleTransform, _playerView.CharacterTransform);
+            _bulletEmitterController = new BulletEmitterController(_cannonView.Bullets, _cannonView.EmmiterTransform);
         }
 
-        private void Start()
-        {
-            
-        }
 
         private void Update()
         {
-            _spriteAnimator.Execute();
+            var deltaTime = Time.deltaTime;
+            _cameraController.Execute(deltaTime);
+            _cannonController.Execute(deltaTime);
+            _bulletEmitterController.Execute(deltaTime);
         }
 
         private void FixedUpdate()
         {
-            
+            var deltaTime = Time.fixedDeltaTime;
+            _playerController.FixedExecute(deltaTime);
         }
 
         #endregion
