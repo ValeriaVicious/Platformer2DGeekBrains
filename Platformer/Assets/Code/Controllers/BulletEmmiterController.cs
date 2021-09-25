@@ -11,8 +11,8 @@ namespace PlatformerGeekBrains
         private Transform _transform;
         private List<BulletController> _bullets = new List<BulletController>();
         private Vector3 _velocity = new Vector3();
-        private const float _delay = 1.0f;
-        private const float _startSpeed = 5.0f;
+        private const float _delay = 2.0f;
+        private const float _startSpeed = 20.0f;
         private float _timeTillNextBullet;
         private int _currentIndex;
 
