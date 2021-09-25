@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08eb694f1406f8641b56623c02c09982, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  View: {fileID: 0}
+  View: {fileID: 6111714059950441046, guid: b0f004ffa5f385641860760dbc558859, type: 3}
   SpriteAnimationsConfig: {fileID: 11400000, guid: 45a07aac0c39e7e4d8245cafe1de8748, type: 2}
-  AnimationSpeed: 10
-  WalkSpeed: 70
+  AnimationSpeed: 12
+  WalkSpeed: 75
   JumpForce: 8
   JumpStartSpeed: 5
   MovingThreshold: 0.1
