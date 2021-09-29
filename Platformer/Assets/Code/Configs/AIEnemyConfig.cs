@@ -10,7 +10,7 @@ namespace PlatformerGeekBrains
         #region Fields
 
         public float Speed;
-        public float MinSqrDistanceToTarger;
+        public float MinSqrDistanceToTarget;
         public Transform[] Waypoints;
 
         #endregion

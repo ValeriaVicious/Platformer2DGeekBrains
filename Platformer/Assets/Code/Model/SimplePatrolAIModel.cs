@@ -7,7 +7,8 @@ namespace PlatformerGeekBrains
     {
         #region Fields
 
-        private readonly Transform[] _wayPoints;
+        private readonly AIEnemyConfig _config;
+        private Transform _target;
         private int _currentPointIndex;
 
         #endregion
@@ -15,10 +16,11 @@ namespace PlatformerGeekBrains
 
         #region ClassLifeCycles
 
-        public SimplePatrolAIModel(Transform[] wayPoints)
+        public SimplePatrolAIModel(AIEnemyConfig config, Transform[] waypoints)
         {
-            _wayPoints = wayPoints;
-            _currentPointIndex = 0;
+            _config = config;
+            _target = GetNextTarget();
+            _currentPointIndex = waypoints.Length;
         }
 
         #endregion
@@ -28,35 +30,20 @@ namespace PlatformerGeekBrains
 
         public Transform GetNextTarget()
         {
-            if (_wayPoints == null)
-            {
-                return null;
-            }
-            _currentPointIndex = (_currentPointIndex + 1) % _wayPoints.Length;
-            return _wayPoints[_currentPointIndex];
+            _currentPointIndex = (_currentPointIndex + 1) % _config.Waypoints.Length;
+            return _config.Waypoints[_currentPointIndex];
         }
 
-        public Transform GetTheClosestTarget(Vector2 fromPosition)
+        public Vector2 CalculateVelocity(Vector2 fromPosition)
         {
-            if (_wayPoints == null)
+            var sqrDistance = Vector2.SqrMagnitude((Vector2)_target.position - fromPosition);
+            if (sqrDistance <= _config.MinSqrDistanceToTarget)
             {
-                return null;
+                _target = GetNextTarget();
             }
 
-            var closestTargetIndex = 0;
-            var closestDistance = 0.0f;
-
-            for (int i = 0; i < _wayPoints.Length; i++)
-            {
-                var distance = Vector2.Distance(fromPosition, _wayPoints[i].position);
-                if (closestDistance > distance)
-                {
-                    closestDistance = distance;
-                    closestDistance = i;
-                }
-            }
-            _currentPointIndex = closestTargetIndex;
-            return _wayPoints[_currentPointIndex];
+            var direction = ((Vector2)_target.position - fromPosition).normalized;
+            return _config.Speed * direction;
         }
 
         #endregion
