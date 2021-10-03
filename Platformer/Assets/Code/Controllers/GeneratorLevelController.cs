@@ -51,8 +51,8 @@ namespace PlatformerGeekBrains.Level
             for (int i = 0; i < _factorSmooth; i++)
             {
                 SmoothTheMap();
-                DrawTilesOnMap();
             }
+            DrawTilesOnMap();
         }
 
         private void RandomFillTheLevel()
@@ -65,9 +65,14 @@ namespace PlatformerGeekBrains.Level
                 for (var y = 0; y < _heightMap; y++)
                 {
                     if (x == 0 || x == _widthMap - 1 || y == 0 || y == _heightMap - 1)
+                    {
                         _map[x, y] = 1;
+                    }
+
                     else
+                    {
                         _map[x, y] = (pseudoRandom.Next(0, 100) < _randomFillPercent) ? 1 : 0;
+                    }
                 }
             }
 
@@ -82,9 +87,13 @@ namespace PlatformerGeekBrains.Level
                     var neighbourWallTiles = GetSurroundingWallCount(x, y);
 
                     if (neighbourWallTiles > _countWall)
+                    {
                         _map[x, y] = 1;
+                    }
                     else if (neighbourWallTiles < _countWall)
+                    {
                         _map[x, y] = 0;
+                    }
                 }
             }
 
@@ -93,7 +102,9 @@ namespace PlatformerGeekBrains.Level
         private void DrawTilesOnMap()
         {
             if (_map == null)
+            {
                 return;
+            }
 
             for (var x = 0; x < _widthMap; x++)
             {
@@ -102,7 +113,9 @@ namespace PlatformerGeekBrains.Level
                     var positionTile = new Vector3Int(-_widthMap / 2 + x, -_heightMap / 2 + y, 0);
 
                     if (_map[x, y] == 1)
+                    {
                         _tileMapGround.SetTile(positionTile, _tileGround);
+                    }
                 }
             }
 
