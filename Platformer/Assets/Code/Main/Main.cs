@@ -1,4 +1,5 @@
 using UnityEngine;
+using PlatformerGeekBrains.Level;
 
 
 namespace PlatformerGeekBrains
@@ -31,7 +32,6 @@ namespace PlatformerGeekBrains
             _cannonController = new CannonController(_cannonView.MuzzleTransform, _playerView.CharacterTransform);
             _bulletEmitterController = new BulletEmitterController(_cannonView.Bullets, _cannonView.EmmiterTransform);
         }
-
 
         private void Update()
         {
