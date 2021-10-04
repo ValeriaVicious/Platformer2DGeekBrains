@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace PlatformerGeekBrains
 {
-    [CreateAssetMenu(fileName = nameof(QuestStory), menuName = "Configs/" + nameof(QuestStory), order = 1)]
-    public sealed class QuestStory : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(QuestStoryConfig), menuName = "Configs/" + nameof(QuestStoryConfig), order = 1)]
+    public sealed class QuestStoryConfig : ScriptableObject
     {
         #region Fields
 
