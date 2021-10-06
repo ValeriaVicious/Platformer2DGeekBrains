@@ -5,6 +5,6 @@ namespace PlatformerGeekBrains.Quests
 {
     public interface IQuestModel
     {
-        public bool TryComplete(GameObject questItem);
+        public bool TryComplete(GameObject player);
     }
 }

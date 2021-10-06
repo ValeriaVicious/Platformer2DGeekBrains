@@ -4,7 +4,7 @@ using System;
 
 namespace PlatformerGeekBrains.Quests
 {
-    public sealed class QuestObjectView : MonoBehaviour
+    public sealed class QuestObjectView : LevelObjectView
     {
         #region Fields
 
@@ -14,14 +14,6 @@ namespace PlatformerGeekBrains.Quests
         [SerializeField] private Collider2D _collider;
         private Color _defaultColor;
 
-
-        #endregion
-
-
-        #region Properties
-
-        public Action<QuestObjectView> OnLevelObjectContact { get; set; }
-
         #endregion
 
 
@@ -30,12 +22,6 @@ namespace PlatformerGeekBrains.Quests
         private void Awake()
         {
             _defaultColor = _spriteRenderer.color;
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            QuestObjectView characterView = collision.GetComponent<QuestObjectView>();
-            OnLevelObjectContact?.Invoke(characterView);
         }
 
         #endregion

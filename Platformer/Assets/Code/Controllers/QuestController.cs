@@ -35,7 +35,7 @@ namespace PlatformerGeekBrains.Quests
 
         #region Methods
 
-        private void OnContact(QuestObjectView view)
+        private void OnContact(LevelObjectView view)
         {
             bool isCompleted = _model.TryComplete(view.gameObject);
             if (isCompleted)
@@ -68,7 +68,7 @@ namespace PlatformerGeekBrains.Quests
 
         public void Reset()
         {
-          if (_isActive)
+            if (_isActive)
             {
                 return;
             }

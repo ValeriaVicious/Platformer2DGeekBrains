@@ -1,10 +1,11 @@
 using System;
 using UnityEngine;
+using PlatformerGeekBrains.Quests;
 
 
 namespace PlatformerGeekBrains
 {
-    public sealed class CharacterView : MonoBehaviour
+    public sealed class CharacterView : LevelObjectView
     {
         #region Fields
 
@@ -12,13 +13,6 @@ namespace PlatformerGeekBrains
         public SpriteRenderer CharacterSprite;
         public Collider2D CharacterCollider;
         public Rigidbody2D CharacterRigidbody;
-
-        #endregion
-
-
-        #region Properties
-
-        public Action<CharacterView> OnLevelObjectContact { get; set; }
 
         #endregion
 
@@ -31,12 +25,6 @@ namespace PlatformerGeekBrains
             CharacterSprite = GetComponent<SpriteRenderer>();
             CharacterRigidbody = GetComponent<Rigidbody2D>();
             CharacterCollider = GetComponent<Collider2D>();
-        }
-
-        private void OnTriggerEnter2D(Collider2D collision)
-        {
-            CharacterView characterView = collision.GetComponent<CharacterView>();
-            OnLevelObjectContact?.Invoke(characterView);
         }
 
         #endregion
