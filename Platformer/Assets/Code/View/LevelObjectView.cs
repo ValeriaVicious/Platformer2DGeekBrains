@@ -8,6 +8,7 @@ namespace PlatformerGeekBrains.Quests
     {
         #region Fields
 
+        private LevelObjectView _levelObjectView;
         public Action<LevelObjectView> OnLevelObjectContact { get; set; }
 
         #endregion
@@ -17,8 +18,8 @@ namespace PlatformerGeekBrains.Quests
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            LevelObjectView levelObjectView = collision.GetComponent<LevelObjectView>();
-            OnLevelObjectContact?.Invoke(levelObjectView);
+            _levelObjectView = collision.GetComponent<LevelObjectView>();
+            OnLevelObjectContact?.Invoke(_levelObjectView);
         }
 
         #endregion
