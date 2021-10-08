@@ -1,9 +1,11 @@
+using System;
 using UnityEngine;
+using PlatformerGeekBrains.Quests;
 
 
 namespace PlatformerGeekBrains
 {
-    public sealed class CharacterView : MonoBehaviour
+    public sealed class CharacterView : LevelObjectView
     {
         #region Fields
 
